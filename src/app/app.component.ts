@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {BiometricWrapper} from '@awesome-cordova-plugins/biometric-wrapper/ngx';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor() {}
+  constructor(private biometricWrapper: BiometricWrapper) {
+    this.biometricWrapper.activateIris({'PID_XML': '&lt;pid-xml/>'})
+      .then((res: any) => {
+        console.log(res);
+      })
+      .catch((error: any) => {
+        console.error(error);
+      });
+  }
 }
